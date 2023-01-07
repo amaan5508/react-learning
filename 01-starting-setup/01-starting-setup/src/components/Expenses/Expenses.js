@@ -1,10 +1,13 @@
 import "./Expenses.css";
 import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
+import ExpensesFilter from "./ExpensesFilter";
 
 function Expenses(datay) {
 
   return (
+    <div>
+      <ExpensesFilter />
     <Card className="expenses">
       <ExpenseItem
         title={datay.expenses[0].title}
@@ -27,6 +30,7 @@ function Expenses(datay) {
         date={datay.expenses[3].date}
       />
     </Card>
+    </div>
   );
 }
 
