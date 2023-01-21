@@ -2,30 +2,40 @@ import "./ExpenseForm.css";
 import { useState } from "react";
 
 const ExpenseForm = (props) => {
+  //Title declaration and change function
   const [enteredTitle, setEnteredTitle] = useState("");
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
   };
+  //Amount declaration and change function
   const [enteredAmount, setEnteredAmount] = useState("");
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
   };
+  //Date declaration and change function
   const [enteredDate, setEnteredDate] = useState("");
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
   };
+  //Submit function; transferring data to NewExpense.js
   const submitHandler = (event) => {
-    event.preventDefault();
+    event.preventDefault(); //Prevents default behaviour(form is cleared and the page reloads); the browser automatically sends a request to the server
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
-    props.onSaveExpenseData(expenseData);
-    setEnteredAmount("");
-    setEnteredDate("");
-    setEnteredTitle("");
+    props.onSaveExpenseData(expenseData); //Calling a function defined in NewExpense.js and passing the expenseData object as a parameter to send data over to the parent component (NewExpense.js)
+    setEnteredAmount(""); // Resetting values
+    setEnteredDate(""); // Resetting values
+    setEnteredTitle(""); // Resetting values
     console.log(expenseData);
+  };
+  const cancelHandler = () => {
+    setEnteredAmount(""); // Resetting values
+    setEnteredDate(""); // Resetting values
+    setEnteredTitle(""); // Resetting values
+    props.onCancel();
   };
   return (
     <form onSubmit={submitHandler}>
@@ -60,6 +70,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={cancelHandler}>Cancel</button>
         <button type="submit">Add expense</button>
       </div>
     </form>

@@ -1,37 +1,27 @@
+import { useState } from "react";
 import "./Expenses.css";
-import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
 
 function Expenses(datay) {
-
+  const [enteredYear, setEnteredYear] = useState(1999);
+  const saveEnteredYearHandler = (selectedYear) => {
+    setEnteredYear(selectedYear);
+  };
+  const filteredExpenses = datay.expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === enteredYear;
+  });
   return (
     <div>
-      <ExpensesFilter />
-    <Card className="expenses">
-      <ExpenseItem
-        title={datay.expenses[0].title}
-        amount={datay.expenses[0].amount}
-        date={datay.expenses[0].date}
-      />
-      <ExpenseItem
-        title={datay.expenses[1].title}
-        amount={datay.expenses[1].amount}
-        date={datay.expenses[1].date}
-      />
-      <ExpenseItem
-        title={datay.expenses[2].title}
-        amount={datay.expenses[2].amount}
-        date={datay.expenses[2].date}
-      />
-      <ExpenseItem
-        title={datay.expenses[3].title}
-        amount={datay.expenses[3].amount}
-        date={datay.expenses[3].date}
-      />
-    </Card>
+      <Card className="expenses">
+        <ExpensesFilter
+          selectedYear={enteredYear}
+          onSaveEnteredYear={saveEnteredYearHandler}
+        />
+        <ExpensesList expenses={filteredExpenses} />
+      </Card>
     </div>
   );
 }
-
 export default Expenses;
