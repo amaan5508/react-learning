@@ -22,21 +22,24 @@ const ExpenseForm = (props) => {
     event.preventDefault(); //Prevents default behaviour(form is cleared and the page reloads); the browser automatically sends a request to the server
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
+
     props.onSaveExpenseData(expenseData); //Calling a function defined in NewExpense.js and passing the expenseData object as a parameter to send data over to the parent component (NewExpense.js)
     setEnteredAmount(""); // Resetting values
     setEnteredDate(""); // Resetting values
     setEnteredTitle(""); // Resetting values
     console.log(expenseData);
   };
+
   const cancelHandler = () => {
     setEnteredAmount(""); // Resetting values
     setEnteredDate(""); // Resetting values
     setEnteredTitle(""); // Resetting values
     props.onCancel();
   };
+  
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">

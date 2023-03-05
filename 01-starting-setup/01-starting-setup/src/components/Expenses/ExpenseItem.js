@@ -2,7 +2,7 @@ import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 
-function ExpenseItem(data) {
+function ExpenseItem(data) { //Component dedicated to solely rendering info
   return (
     <li>
       <Card className="expense-item">

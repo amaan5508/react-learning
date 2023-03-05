@@ -1,9 +1,9 @@
 import "./ExpenseDate.css";
 
 function ExpenseDate(datax) {
-  const month = datax.date.toLocaleString("en-UK", { month: "long" });
-  const year = datax.date.getFullYear();
-  const day = datax.date.toLocaleString("en-UK", { day: "2-digit" });
+  const month = datax.date.toLocaleString("en-UK", { month: "long" });//Extracting month
+  const year = datax.date.getFullYear();//Extracting year
+  const day = datax.date.toLocaleString("en-UK", { day: "2-digit" });//Extracting day
   return (
     <div className="expense-date">
       <div className="expense-date__month">{month}</div>
